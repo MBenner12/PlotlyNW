@@ -4,10 +4,10 @@
 # Flask (Server)
 from flask import Flask, jsonify, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
-db = SQLAlchemy(app)
-session = db.session
+#db = SQLAlchemy(app)
+#session = db.session
 
 # SQL Alchemy (ORM)
 import sqlalchemy
@@ -22,7 +22,7 @@ import numpy as np
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("/Users/mattbenner/Desktop/NW_Data/Interactive Vis HW/DataSets/belly_button_biodiversity.sqlite")
+engine = create_engine("DataSets/belly_button_biodiversity.sqlite")
 
 # reflect an existing database into a new model
 Base = automap_base()
