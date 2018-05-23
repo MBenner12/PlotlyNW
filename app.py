@@ -3,6 +3,11 @@
 #################################################
 # Flask (Server)
 from flask import Flask, jsonify, render_template, request, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+db = SQLAlchemy(app)
+session = db.session
 
 # SQL Alchemy (ORM)
 import sqlalchemy
@@ -30,7 +35,7 @@ Samples = Base.classes.samples
 Samples_Metadata= Base.classes.samples_metadata
 
 # Create our session (link) from Python to the DB
-session = Session(engine)
+#######session = Session(engine)
 
 #################################################
 # Flask Setup
@@ -118,8 +123,7 @@ def samples(sample):
     df = pd.read_sql_query(stmt, session.bind)
 
     # Make sure that the sample was found in the columns, else throw an error
-    if sample not in df.columns:
-        return jsonify(f"Error! Sample: {sample} Not Found!"), 400
+   # return jsonify(f"Error! Sample: {sample} Not Found!"), 400
 
     # Return any sample values greater than 1
     df = df[df[sample] > 1]
